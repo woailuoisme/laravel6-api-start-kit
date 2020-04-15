@@ -14,6 +14,10 @@ composer require caouecs/laravel-lang:~5.0
 composer require infyomlabs/laravel-generator:6.0.x-dev --dev
 composer require barryvdh/laravel-ide-helper --dev
 ```
+### config .evv
+```php
+copy .env.example to .env
+```
 ### install deponds
 ```php
 composer install
