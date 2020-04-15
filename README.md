@@ -10,7 +10,7 @@ redis
 ```php
 composer require tymon/jwt-auth
 composer require fruitcake/laravel-cors
-infyomlabs/laravel-generator:6.0.x-dev
+composer require infyomlabs/laravel-generator:6.0.x-dev
 composer require barryvdh/laravel-ide-helper --dev
 composer require caouecs/laravel-lang:~5.0
 ```
