@@ -1,38 +1,24 @@
 <?php
 
-use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
 Route::namespace('V1')->prefix('v1')->group(function (){
-    Route::prefix('auth')->group(function ($router) {
-        Route::post('login', 'AuthController@login');
-        Route::post('logout', 'AuthController@logout');
-        Route::get('me', 'AuthController@me');
-        Route::post('refresh', 'AuthController@refresh');
-        Route::post('signup', 'AuthController@signUp');
-
-        Route::post('password/forget', 'AuthController@forgetPassword');
-        Route::post('password/reset', 'AuthController@resetPassword');
+    Route::prefix('auth')->group(function () {
+        Route::post('login', 'AuthController@login')->name('auth.login');
+        Route::post('logout', 'AuthController@logout')->name('auth.logout');
+        Route::get('me', 'AuthController@me')->name('auth.me');
+        Route::post('refresh', 'AuthController@refresh')->name('auth.refresh');
+        Route::post('signup', 'AuthController@signUp')->name('auth.signup');
+        Route::post('password/forget', 'AuthController@forgetPassword')->name('auth.password.forget');
+        Route::post('password/reset', 'AuthController@resetPassword')->name('auth.password.rest');
+    });
+    Route::prefix('user')->group(function () {
+        Route::post('avatar', 'UserController@avatar')->name('user.avatar');
     });
 });
 
-
 Route::fallback(function () {
     return response()->json([
-        'message' => \request()->url() .' Not found'
+        'message' => request()->url().' Not found',
     ], 404);
 })->name('fallback');
 
